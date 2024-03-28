@@ -46,7 +46,7 @@ merged_df = merged_df[merged_df['attributeId'].isnull()]
 merged_df.drop_duplicates(subset='Longlabel', inplace=True)
 
 # Rename the last column to "Extra AttributeIDs"
-merged_df.rename(columns={'attributeId': 'Extra AttributeIDs'}, inplace=True)
-
+merged_df.rename(columns={'Matching AttributeIds': 'Extra AttributeIDs'}, inplace=True)
+merged_df.rename(columns={'attributeId': 'attributeId in Query'}, inplace=True)
 # Save the final dataframe to a new CSV file
 merged_df.to_csv("merged_results.csv", index=False)
