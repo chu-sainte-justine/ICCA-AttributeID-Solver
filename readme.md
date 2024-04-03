@@ -1,6 +1,8 @@
 ## Description: 
+![image](https://github.com/chu-sainte-justine/ICCA-AttributeID-Solver/assets/67806795/5371ef8a-0ae6-4281-954e-b53904488870)
+
 ### Objective:
-The objective of this code is to identify all attributeID values present in an SQL query, and then log them into a `unique_values.csv` file that will be used to query an SQL server to find other values that correspond to the same `longlabel` description. This query is then saved to the `label_results.csv` file. These two files are then compared to produce a `merged_results.csv` file that contains all the extra updated values that were not present in your original query.
+The objective of this code is to identify all attributeID values present in an ICCA SQL query, and then log them into a `unique_values.csv` file that will be used to query an SQL server to find other values that correspond to the same `longlabel` description. This query is then saved to the `label_results.csv` file. These two files are then compared to produce a `merged_results.csv` file that contains all the extra updated values that were not present in your original query.
 
 ### Necessary Libraries:
    - The code imports the required libraries:
