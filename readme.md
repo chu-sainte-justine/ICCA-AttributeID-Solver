@@ -1,6 +1,9 @@
 In order to run this code you must:
 
-1. Setup a python environment with access to the libraries listed in requirements.txt
+1. Setup a python environment with access to the libraries listed in requirements.txt by running:
+   `chmod +x create_conda_env.sh` if necessary, and then
+   `./create_conda_env.sh`
+   
 2. Run, in order:
   1. python unique_variables_extraction.py
   2. python refresh_variables.py
