@@ -19,9 +19,10 @@ In order to run this code you must:
    `./create_conda_env.sh`
    
 2. Run, in order:
-  1. python unique_variables_extraction.py
-  2. python refresh_variables.py
-  3. python compare.py
+  1. conda activate ICCA_AttributeID_Solver
+  2. python unique_variables_extraction.py
+  3. python refresh_variables.py
+  4. python compare.py
 
 A CSV file is generated after every step, resulting in 3 csv files:
 unique_values.csv - a file containing a list of the unique values in the SQL query.
