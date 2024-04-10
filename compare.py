@@ -1,16 +1,3 @@
-
-
-#The code reads two CSV files,
-#unique_values.csv and label_results.csv,
-#and then merges them based on certain conditions.
-
-#Specifically, it tries to match the 'Matching AttributeIds' from label_results.csv with the 'attributeId' column in unique_values.csv.
-#However, it only keeps the rows from label_results.csv that do not have a corresponding match in unique_values.csv.
-
-#The code identifies all values present in label_results.csv that are not present in unique_values.csv,
-#based on the specified condition for the merge operation.
-#These values are then stored in the resulting DataFrame as 'Extra AttributeIDs'.
-
 import pandas as pd
 import ast
 
@@ -45,8 +32,17 @@ merged_df = merged_df[merged_df['attributeId'].isnull()]
 # Drop duplicate rows based on 'Longlabel' column
 merged_df.drop_duplicates(subset='Longlabel', inplace=True)
 
-# Rename the last column to "Extra AttributeIDs"
-merged_df.rename(columns={'Matching AttributeIds': 'Extra AttributeIDs'}, inplace=True)
-merged_df.rename(columns={'attributeId': 'attributeId in Query'}, inplace=True)
+# Create a column 'ABSENT_LABELS' with NaN values
+merged_df['ABSENT_LABELS'] = pd.NA
+
+# Get labels present in label_results but absent in unique_values
+absent_labels = label_results_df[~label_results_df['Matching AttributeIds'].isin(unique_values_df['attributeId'])][['Longlabel', 'Matching AttributeIds']]
+
+for index, row in merged_df.iterrows():
+    if index in absent_labels.index:
+        merged_df.at[index, 'ABSENT_LABELS'] = absent_labels.loc[index, 'Matching AttributeIds']
+
 # Save the final dataframe to a new CSV file
+merged_df.rename(columns={'Matching AttributeIds': 'Absent_AttributeIds', 'attributeId': 'ignore', 'ABSENT_LABELS': 'Other_labels'}, inplace=True)
+
 merged_df.to_csv("merged_results.csv", index=False)
